@@ -1,8 +1,6 @@
-  \c movies_checklist;
+DROP TABLE IF EXISTS movies_to_watch;
 
-  DROP TABLE IF EXISTS movies_to_watch;
-
-  CREATE TABLE movies_to_watch (
+CREATE TABLE movies_to_watch (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
     director VARCHAR(255),

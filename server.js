@@ -2,18 +2,18 @@ const express = require('express');
 
 const { Pool } = require('pg');
 
-const pool = new Pool({
-    user: "seanguerrero",
-    password: "",
-    host: "localhost",
-    database: "movies_checklist",
-    port: 5432
+const dbString = process.env.DATABASE_URL
 
+const pool = new Pool({
+    connectionString: dbString,
 })
 
 const app = express();
-app.use(express.json());
-let PORT = 8069
+app.use(express.static('public'));
+
+let dotenv = require('dotenv')
+dotenv.config()
+
 
 
 app 
@@ -94,7 +94,8 @@ app
 
 
 
-
-app.listen(PORT, () => {
-    console.log(`WORKING ON... ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`WORKING ON... ${process.env.PORT}`)
 } )
+
+console.log(express)
