@@ -143,7 +143,7 @@ function fetchData() {
             editBtn.textContent = "Edit";
             editBtn.classList.add("edit-btn")
             editBtn.addEventListener("click", function() {
-                editRow(entity.id);
+                updateOne(entity.id);
             })
 
             actionCell.appendChild(deleteBtn);
