@@ -1,2 +1,6 @@
-import { getOne, getAll, createOne, updateOne, deleteOne} from './MVP-Fullstack-project/server.js'
+const getOne =require('./MVP-Fullstack-project/server.js')
+const getAll =require('./MVP-Fullstack-project/server.js')
+const createOne =require('./MVP-Fullstack-project/server.js')
+const updateOne =require('./MVP-Fullstack-project/server.js')
+const deleteOne =require('./MVP-Fullstack-project/server.js')
 console.log(getOne)
