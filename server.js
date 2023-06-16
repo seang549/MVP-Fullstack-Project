@@ -102,3 +102,5 @@ module.exports = {
     updateOne,
     deleteOne
 }
+
+console.log(module)
