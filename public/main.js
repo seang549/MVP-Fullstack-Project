@@ -19,7 +19,7 @@ async function getAll () {
     const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
     console.log(response)
     const data = await response.json();
-    console.log(indexof(data));
+    console.log(data);
     let temp = "";
     for (i = 0; i < data.title.length; i++) {
         temp+="<tr>";
