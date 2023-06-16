@@ -10,8 +10,11 @@
     <h1>Welcome to your Movies to watch List</h1>
     <div id="movies" class="header">
         <h2>Movies I want to see:</h2>
-        <input type="text" id="input" placeholder="Movie title...">
-        <span onclick="createOne" class="addBtn">Add</span>
+        <form id="form" method="post">
+            <input type="text", id="movieTitle" placeholder="Movie title..."/></br>
+            <input type="text", id="genre" placeholder="Genre..."/></br>
+            <input type="text", id="rating" placeholder="Rating..."/></br>
+        </form>
     </div>
     <table class='movieTable movieTable-bordered'>
         <tbody id='data'>

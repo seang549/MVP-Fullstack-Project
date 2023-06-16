@@ -38,4 +38,39 @@ async function getAll () {
 }
 getAll();
 
-async 
+async function createOne() {
+    let form = document.getElementById('form')
+    form.addEventListener('submit', function(e) {
+        e.preventDefault()
+
+        let movieTitle = document.getElementById('movieTitle').value;
+        let genre = document.getElementById('genre').value;
+        let rating = document.getElementById('rating').value;
+
+        fetch("https://movies-db-team3.onrender.com/movies_to_watch", {
+            method: 'POST',
+            body: JSON.stringify({
+                movieTitle: title,
+                genre: genre,
+                rating: rating, 
+            }),
+            // headers: {
+            //     'Content-type': 'application/json'; 'charset=UTF-8',
+            // }
+        })
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data)
+            title=document.getElementById('title')
+            genre= documnet.getElementById('genre')
+            rating= document.getElementById('rating')
+            title.innerHTML = data.title
+            genre.innerHTMl = data.genre
+            rating.innerHTML = data.rating
+        })
+        .catch(error => console.error('Error:', error))
+    })
+
+}
