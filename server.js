@@ -6,6 +6,7 @@ const pool = new Pool({
 })
 
 const app = express();
+app.use(express.json());
 app.use(express.static('public'));
 
 let dotenv = require('dotenv')
@@ -94,3 +95,10 @@ app.listen(process.env.PORT, () => {
     console.log(`WORKING ON... ${process.env.PORT}`)
 } )
 
+module.exports = {
+    getOne,
+    getAll,
+    createOne,
+    updateOne,
+    deleteOne
+}

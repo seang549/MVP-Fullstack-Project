@@ -1,1 +1,2 @@
-console.log('working')
+const routes = require('./server')
+console.log(routes.getOne)
