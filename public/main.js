@@ -22,7 +22,7 @@ async function getAll () {
         const data = await response.json();
         console.log(data);
         let temp = "";
-        for (i = 0; i < data.title.length; i++) {
+        for (i = 0; i < data.length; i++) {
             temp+="<tr>";
             temp+=`<td>${data[i].title}</td>`
         }
