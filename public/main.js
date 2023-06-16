@@ -1,2 +1,2 @@
-const routes = require('./server')
+const routes = require('./server.js')
 console.log(routes.getOne)
