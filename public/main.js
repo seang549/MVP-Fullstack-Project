@@ -50,7 +50,7 @@ async function createOne() {
         fetch("https://movies-db-team3.onrender.com/movies_to_watch/post", {
             method: 'POST',
             body: JSON.stringify({
-                movieTitle: title,
+                title: MovieTitle,
                 genre: genre,
                 rating: rating, 
             }),
