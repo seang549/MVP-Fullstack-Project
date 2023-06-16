@@ -95,7 +95,7 @@ app.listen(process.env.PORT, () => {
     console.log(`WORKING ON... ${process.env.PORT}`)
 } )
 
-module.exports =  {
+export {
     getOne,
     getAll,
     createOne,
