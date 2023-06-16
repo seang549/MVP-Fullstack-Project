@@ -113,21 +113,28 @@ function deleteTableRow(id) {
     })
 }
 
-// function fetchData() {
+function fetchData() {
+    fetch('https://movies-db-team3.onrender.com/movies_to_watch')
+    .then(response => response.json())
+    .then(data => {
+        const movieTitle = document.getElementById('movieTable')
+        data.forEach(entity => {
+            const newRow = movieTitle.insertRow();
+            newRow.id = `row-${entity.id}`;
 
-// const movieTitle = document.getElementById('movieTable')
-// data.forEach(entity => {
-//     const newRow = movieTitle.insertRow();
-//     newRow.id = `row-${entity.id}`;
+            const titleCell = newRow.insertCell();
+            const genreCell = newRow.insertCell();
+            const ratingCell = newRow.insertCell();
+            const actionCell = newRow.insertCell();
 
-//     const titleCell = newRow.insertCell();
-//     const genreCell = newRow.insertCell();
-//     const ratingCell = newRow.insertCell();
-//     const actionCell = newRow.insertCell();
+            titleCell.textContent = entity.title;
+            genreCell.textContent = entity.genre;
+            ratingCell.textContent = entity.rating;
+            actionCell.appendChild(createDeleteBtn(entity.id));
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error)
+    })
 
-//     titleCell.textContent = entity.title;
-//     genreCell.textContent = entity.genre;
-//     ratingCell.textContent = entity.rating;
-//     actionCell.appendChild(createDeleteBtn(entity.id));
-// });
-// }
+}
