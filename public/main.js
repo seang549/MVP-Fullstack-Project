@@ -14,6 +14,7 @@ for(let i = 0; i < close.length; i++) {
         div.style.display = "none";
     }
 }
+const body = document.getElementsByTagName('body')
 function getAll () {
     const requestURL = "https://movies-db-team3.onrender.com/movies_to_watch";
 
