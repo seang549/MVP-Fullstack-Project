@@ -64,7 +64,7 @@ async function createOne() {
         .then(function(data){
             console.log(data)
             title=document.getElementById('title')
-            genre= documnet.getElementById('genre')
+            genre= document.getElementById('genre')
             rating= document.getElementById('rating')
             title.innerHTML = data.title
             genre.innerHTMl = data.genre
