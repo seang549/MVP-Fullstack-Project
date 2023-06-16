@@ -26,11 +26,17 @@
         </tbody>
     </table>
 
-    <div id="editFormContainer">
+    <div id="editForm" style="display: none">
         <h2>Edit Form</h2>
-        <form id="editForm">
-            <input type="hidden" id="editId" value="">
-            
+        <form id="editFormInputs">
+            <label for="editMovieTitle">Movie title:</label>
+            <input type="text" id="editMovietitle" required>
+            <label for="editGenre">Genre:</label>
+            <input type="text" id="editGenre" required>
+            <label for="editRating">Rating:</label>
+            <input type="number" id="editRating" required>
+            <button type="submit">Save</button>
+            <button id="cancelEditBtn">Cancel</button>
         </form>
     </div>
 
