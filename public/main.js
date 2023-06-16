@@ -23,7 +23,7 @@ async function getAll () {
     let temp = "";
     for (i = 0; i < data.title.length; i++) {
         temp+="<tr>";
-       
+        temp+=`<td>${data[i].title}</td>`
     }
     document.getElementById('data').innerHTML=temp;
 }
