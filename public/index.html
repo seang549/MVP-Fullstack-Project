@@ -8,10 +8,16 @@
 </head>
 <body>
     <h1>Welcome to your Movies to watch List</h1>
-    <div>
-        <button id="EditBtn">Click Me</button>
-        <button id="DeleteBtn">Click Me</button>
+    <div id="movies" class="header">
+        <h2>Movies I want to see:</h2>
+        <input type="text" id="input" placeholder="Movie title...">
+        <span onclick="createOne" class="addBtn">Add</span>
     </div>
+
+    <ul id="movieList">
+        <li>SURF's Up</li>
+        <li>Rocky</li>
+    </ul>
     <script src="./main.js"></script>
 </body>
 </html>
