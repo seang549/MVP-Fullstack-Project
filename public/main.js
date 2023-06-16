@@ -1,2 +1,2 @@
-const routes = require('./server.js')
-console.log(routes.getOne)
+import { getOne, getAll, createOne, updateOne, deleteOne} from './MVP-Fullstack-project/server.js'
+console.log(getOne)
