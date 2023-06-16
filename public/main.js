@@ -43,7 +43,7 @@ async function getAll () {
             titleCell.textContent = entity.title;
             genreCell.textContent = entity.genre;
             ratingCell.textContent = entity.rating;
-            actionCell.appendChild(createDeleteButton(entity.id));
+            actionCell.appendChild(createDeleteBtn(entity.id));
         });
 
     }
