@@ -21,7 +21,7 @@ function getAll () {
     fetch(requestURL)
     .then((response) => response.json())
     .then((data) => {
-        body.appendChild(data)
+        body.append(data)
         return data;
     })
 }
