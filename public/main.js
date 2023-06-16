@@ -20,7 +20,12 @@ async function getAll () {
     console.log(response)
     const data = await response.json();
     console.log(data);
-
+    let temp = "";
+    for (i = 0; i < data.title.length; i++) {
+        temp+="<tr>";
+       
+    }
+    document.getElementById('data').innerHTML=temp;
 }
 getAll();
 
