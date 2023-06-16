@@ -15,15 +15,12 @@ for(let i = 0; i < close.length; i++) {
     }
 }
 const body = document.getElementsByTagName('body')
-function getAll () {
-    const requestURL = "https://movies-db-team3.onrender.com/movies_to_watch";
+async function getAll () {
+    const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
+    console.log(response)
+    const data = await response.json();
+    console.log(data);
 
-    fetch(requestURL)
-    .then((response) => response.json())
-    .then((data) => {
-        body.append(data)
-        return data;
-    })
 }
 getAll();
 
