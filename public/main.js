@@ -122,7 +122,7 @@ function fetchData() {
             ratingCell.textContent = entity.rating;
             deleteBtn.textContent = "Delete";
             deleteBtn.addEventListener("click", function() {
-                deleteTableRow(entity.id);
+                deleteRow(entity.id);
             })
 
             actionCell.appendChild(deleteBtn);
