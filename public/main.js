@@ -16,16 +16,22 @@ for(let i = 0; i < close.length; i++) {
 }
 const body = document.getElementsByTagName('body')
 async function getAll () {
-    const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
-    console.log(response)
-    const data = await response.json();
-    console.log(data);
-    let temp = "";
-    for (i = 0; i < data.title.length; i++) {
-        temp+="<tr>";
-        temp+=`<td>${data[i].title}</td>`
+    try {
+        const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
+        console.log(response)
+        const data = await response.json();
+        console.log(data);
+        let temp = "";
+        for (i = 0; i < data.title.length; i++) {
+            temp+="<tr>";
+            temp+=`<td>${data[i].title}</td>`
+        }
+        document.getElementById('data').innerHTML=temp;
     }
-    document.getElementById('data').innerHTML=temp;
+    catch(err) {
+        console.error(err.message)
+    }
+
 }
 getAll();
 
