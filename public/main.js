@@ -30,22 +30,6 @@ async function getAll () {
             temp+=`<td>${data[i].rating}</td>`
         }
         document.getElementById('data').innerHTML=temp;
-        const movieTitle = document.getElementById('movieTable')
-        data.forEach(entity => {
-            const newRow = movieTitle.insertRow();
-            newRow.id = `row-${entity.id}`;
-    
-            const titleCell = newRow.insertCell();
-            const genreCell = newRow.insertCell();
-            const ratingCell = newRow.insertCell();
-            const actionCell = newRow.insertCell();
-    
-            titleCell.textContent = entity.title;
-            genreCell.textContent = entity.genre;
-            ratingCell.textContent = entity.rating;
-            actionCell.appendChild(createDeleteBtn(entity.id));
-        });
-
     }
     catch(err) {
         console.error(err.message)
@@ -131,4 +115,19 @@ function deleteTableRow(id) {
 
 // function fetchData() {
 
+// const movieTitle = document.getElementById('movieTable')
+// data.forEach(entity => {
+//     const newRow = movieTitle.insertRow();
+//     newRow.id = `row-${entity.id}`;
+
+//     const titleCell = newRow.insertCell();
+//     const genreCell = newRow.insertCell();
+//     const ratingCell = newRow.insertCell();
+//     const actionCell = newRow.insertCell();
+
+//     titleCell.textContent = entity.title;
+//     genreCell.textContent = entity.genre;
+//     ratingCell.textContent = entity.rating;
+//     actionCell.appendChild(createDeleteBtn(entity.id));
+// });
 // }
