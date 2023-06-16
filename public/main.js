@@ -47,16 +47,16 @@ async function createOne() {
         let genre = document.getElementById('genre').value;
         let rating = document.getElementById('rating').value;
 
-        fetch("https://movies-db-team3.onrender.com/movies_to_watch/post", {
+        fetch("https://movies-db-team3.onrender.com/movies_to_watch", {
             method: 'POST',
             body: JSON.stringify({
                 title: movieTitle,
                 genre: genre,
                 rating: rating, 
             }),
-            // headers: {
-            //     'Content-type': 'application/json'; 'charset=UTF-8',
-            // }
+            headers: {
+                'Content-type': 'application/json',
+            }
         })
         .then(function(response){
             return response.json()
