@@ -15,6 +15,7 @@ for(let i = 0; i < close.length; i++) {
     }
 }
 const body = document.getElementsByTagName('body')
+
 async function getAll () {
     try {
         const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
@@ -25,6 +26,8 @@ async function getAll () {
         for (i = 0; i < data.length; i++) {
             temp+="<tr>";
             temp+=`<td>${data[i].title}</td>`
+            temp+=`<td>${data[i].genre}</td>`
+            temp+=`<td>${data[i].rating}</td>`
         }
         document.getElementById('data').innerHTML=temp;
     }
@@ -35,3 +38,4 @@ async function getAll () {
 }
 getAll();
 
+async 
