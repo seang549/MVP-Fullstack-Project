@@ -1,4 +1,4 @@
-const myNodeList = document.getElementsByTagName('td')
+const myNodeList = document.getElementsByTagName('tr')
 for (let i = 0; i < myNodeList.length; i++) {
     let span = document.createElement('span');
     let txt = document.createTextNode('\u00D7')
