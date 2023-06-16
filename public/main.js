@@ -84,30 +84,18 @@ function addRowToTable(data) {
 
 ////////////////////DELETE ONE////////////
 
-//creates a delete button
-function createDeleteBtn(id) {
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent ="Delete";
-    deleteBtn.addEventListener('click', function() {
-        deleteTableRow(id)
-    })
-    return deleteBtn;
-}
 
 //deletes table row
-function deleteTableRow(id) {
+function deleteRow(entityId) {
     //make a delete request using fetch
     fetch('https://movies-db-team3.onrender.com/movies_to_watch/${id}', {
         method: "DELETE"
     })
-    .then(response => {
-        if(response.ok) {
-            const row = document.getElementById(`row-${id}`)
-            row.remove()
-        }
-        else {
-            throw new Error("Delete request failed")
-        }
+    .then(response => response.json())
+    .then(data => {
+        console.log("Row deleted successfully");
+        fetchData();
+
     })
     .catch(error => {
         console.error("Error:", error)
@@ -118,20 +106,32 @@ function fetchData() {
     fetch('https://movies-db-team3.onrender.com/movies_to_watch')
     .then(response => response.json())
     .then(data => {
-        const movieTitle = document.getElementById('movieTable')
-        data.forEach(entity => {
-            const newRow = movieTitle.insertRow();
-            newRow.id = `row-${entity.id}`;
+        const movieTable = document.getElementById('movieTable')
+        movieTable.innerHTML = '';
 
-            const titleCell = newRow.insertCell();
-            const genreCell = newRow.insertCell();
-            const ratingCell = newRow.insertCell();
-            const actionCell = newRow.insertCell();
+        data.forEach(entity => {
+            const newRow = document.createElement('tr')
+            const titleCell = document.createElement('td');
+            const genreCell = document.createElement('td');
+            const ratingCell = document.createElement('td');
+            const actionCell = document.createElement('td')
+            const deleteBtn = document.createElement('button')
 
             titleCell.textContent = entity.title;
             genreCell.textContent = entity.genre;
             ratingCell.textContent = entity.rating;
-            actionCell.appendChild(createDeleteBtn(entity.id));
+            deleteBtn.textContent = "Delete";
+            deleteBtn.addEventListener("click", function() {
+                deleteTableRow(entity.id);
+            })
+
+            actionCell.appendChild(deleteBtn);
+            newRow.appendChild(titleCell);
+            newRow.appendChild(genreCell)
+            newRow.appendChild(ratingCell)
+            newRow.appendChild(actionCell)
+            movieTable.appendChild(newRow)
+        
         });
     })
     .catch(error => {
