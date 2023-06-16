@@ -138,3 +138,4 @@ function fetchData() {
     })
 
 }
+fetchData();
