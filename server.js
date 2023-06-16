@@ -95,11 +95,4 @@ app.listen(process.env.PORT, () => {
     console.log(`WORKING ON... ${process.env.PORT}`)
 } )
 
-export {
-    getOne,
-    getAll,
-    createOne,
-    updateOne,
-    deleteOne
-};
 
