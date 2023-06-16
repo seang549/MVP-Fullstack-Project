@@ -14,3 +14,14 @@ for(let i = 0; i < close.length; i++) {
         div.style.display = "none";
     }
 }
+function getAll () {
+    const requestURL = "https://movies-db-team3.onrender.com/movies_to_watch";
+
+    fetch(requestURL)
+    .then(response => response.json())
+    .then(data => {
+        return data.json()
+    })
+}
+getAll();
+
