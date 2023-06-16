@@ -16,27 +16,27 @@
 // }
 const body = document.getElementsByTagName('body')
 
-async function getAll () {
-    try {
-        const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
-        console.log(response)
-        const data = await response.json();
-        console.log(data);
-        let temp = "";
-        for (i = 0; i < data.length; i++) {
-            temp+="<tr>";
-            temp+=`<td>${data[i].title}</td>`
-            temp+=`<td>${data[i].genre}</td>`
-            temp+=`<td>${data[i].rating}</td>`
-        }
-        document.getElementById('data').innerHTML=temp;
-    }
-    catch(err) {
-        console.error(err.message)
-    }
+// async function getAll () {
+//     try {
+//         const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
+//         console.log(response)
+//         const data = await response.json();
+//         console.log(data);
+//         let temp = "";
+//         for (i = 0; i < data.length; i++) {
+//             temp+="<tr>";
+//             temp+=`<td>${data[i].title}</td>`
+//             temp+=`<td>${data[i].genre}</td>`
+//             temp+=`<td>${data[i].rating}</td>`
+//         }
+//         document.getElementById('data').innerHTML=temp;
+//     }
+//     catch(err) {
+//         console.error(err.message)
+//     }
 
-}
-getAll();
+// }
+// getAll();
 
 ////////////////////POST REQUEST/////////////////
 document.getElementById('form').addEventListener('submit', function(event) {
