@@ -18,9 +18,9 @@ function getAll () {
     const requestURL = "https://movies-db-team3.onrender.com/movies_to_watch";
 
     fetch(requestURL)
-    .then(response => response.json())
-    .then(data => {
-        return data.json()
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
     })
 }
 getAll();
