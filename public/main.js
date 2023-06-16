@@ -129,16 +129,25 @@ function fetchData() {
             const ratingCell = document.createElement('td');
             const actionCell = document.createElement('td')
             const deleteBtn = document.createElement('button')
+            const editBtn = document.createElement('button')
 
             titleCell.textContent = entity.title;
             genreCell.textContent = entity.genre;
             ratingCell.textContent = entity.rating;
+            
             deleteBtn.textContent = "Delete";
             deleteBtn.addEventListener("click", function() {
                 deleteRow(entity.id);
             })
 
+            editBtn.textContent = "Edit";
+            editBtn.classList.add("edit-btn")
+            editBtn.addEventListener("click", function() {
+                editRow(entity.id);
+            })
+
             actionCell.appendChild(deleteBtn);
+            actionCell.appendChild(editBtn);
             newRow.appendChild(titleCell);
             newRow.appendChild(genreCell)
             newRow.appendChild(ratingCell)
@@ -201,8 +210,8 @@ function updateOne() {
             },
             body: JSON.stringify(updatedRow)
         })
-        .then(respose => respose.json())
-        .then(data => {
+        .then((respose) => respose.json())
+        .then((data) => {
             console.log("Row updated successfully")
             hideEditForm();
             fetchData()
