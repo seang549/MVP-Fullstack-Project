@@ -47,7 +47,7 @@ async function createOne() {
         let genre = document.getElementById('genre').value;
         let rating = document.getElementById('rating').value;
 
-        fetch("https://movies-db-team3.onrender.com/movies_to_watch", {
+        fetch("https://movies-db-team3.onrender.com/movies_to_watch/post", {
             method: 'POST',
             body: JSON.stringify({
                 movieTitle: title,
