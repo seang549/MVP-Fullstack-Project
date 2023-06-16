@@ -87,20 +87,19 @@ function addRowToTable(data) {
 
 //deletes table row
 function deleteRow(entityId) {
-    //make a delete request using fetch
-    fetch('https://movies-db-team3.onrender.com/movies_to_watch/:${entityId}', {
-        method: "DELETE"
+    // Make a delete request using fetch
+    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
+      method: "DELETE"
     })
-    .then(response => response.json())
-    .then(data => {
+      .then(response => response.json())
+      .then(data => {
         console.log("Row deleted successfully");
         fetchData();
-
-    })
-    .catch(error => {
-        console.error("Error:", error)
-    })
-}
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  }
 
 function fetchData() {
     fetch('https://movies-db-team3.onrender.com/movies_to_watch')
