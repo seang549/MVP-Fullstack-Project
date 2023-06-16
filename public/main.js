@@ -88,7 +88,7 @@ function addRowToTable(data) {
 //deletes table row
 function deleteRow(entityId) {
     //make a delete request using fetch
-    fetch('https://movies-db-team3.onrender.com/movies_to_watch/${id}', {
+    fetch('https://movies-db-team3.onrender.com/movies_to_watch/${entityId}', {
         method: "DELETE"
     })
     .then(response => response.json())
