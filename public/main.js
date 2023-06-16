@@ -38,7 +38,7 @@ async function getAll () {
 }
 getAll();
 
-
+////////////////////POST REQUEST/////////////////
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = {
@@ -77,43 +77,42 @@ function addRowToTable(data) {
    genreCell.textContent = data.genre;
     const ratingCell = newRow.insertCell()
     ratingCell.textContent = data.rating;
-
 }
 
+//////////////////////////////////////////
 
-//async function creatOne() {
-// let form = document.getElementById('form')
-// form.addEventListener('submit', function(e) {
-//     e.preventDefault()
+////////////////////DELETE ONE////////////
 
-//     let movieTitle = document.getElementById('movieTitle').value;
-//     let genre = document.getElementById('genre').value;
-//     let rating = document.getElementById('rating').value;
+//creates a delete button
+function createDeleteBtn(id) {
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent ="Delete";
+    deleteBtn.addEventListener('click', function() {
+        deleteTableRow(id)
+    })
+    return deleteBtn;
+}
 
-//     fetch("https://movies-db-team3.onrender.com/movies_to_watch", {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             title: movieTitle,
-//             genre: genre,
-//             rating: rating, 
-//         }),
-//         headers: {
-//             'Content-type': 'application/json',
-//         }
-//     })
-//     .then(function(response){
-//         return response.json()
-//     })
-//     .then(function(data){
-//         console.log(data)
-//         title=document.getElementById('title')
-//         genre= document.getElementById('genre')
-//         rating= document.getElementById('rating')
-//         title.innerHTML = data.title
-//         genre.innerHTMl = data.genre
-//         rating.innerHTML = data.rating
-//     })
-//     .catch(error => console.error('Error:', error))
-// })
+//deletes table row
+function deleteTableRow(id) {
+    //make a delete request using fetch
+    fetch('https://movies-db-team3.onrender.com/movies_to_watch/${id}', {
+        method: "DELETE"
+    })
+    .then(response => {
+        if(response.ok) {
+            const row = document.getElementById(`row-${id}`)
+            row.remove()
+        }
+        else {
+            throw new Error("Delete request failed")
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error)
+    })
+}
+
+// function fetchData() {
+
 // }
-//createOne()
