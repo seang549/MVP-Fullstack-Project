@@ -20,7 +20,7 @@ function getAll () {
     fetch(requestURL)
     .then((response) => response.json())
     .then((data) => {
-        console.log(data)
+        return data;
     })
 }
 getAll();
