@@ -68,16 +68,38 @@ function postData(data) {
     })
 }
 
+// function addRowToTable(data) {
+//     const movieTable = document.getElementById('movieTable')
+//     const newRow = movieTable.insertRow()
+//     const titleCell = newRow.insertCell()
+//     titleCell.textContent = data.title;
+//     const genreCell = newRow.insertCell()
+//    genreCell.textContent = data.genre;
+//     const ratingCell = newRow.insertCell()
+//     ratingCell.textContent = data.rating;
+    
+// }
+
 function addRowToTable(data) {
-    const movieTable = document.getElementById('movieTable')
-    const newRow = movieTable.insertRow()
-    const titleCell = newRow.insertCell()
+    const movieTable = document.getElementById('movieTable');
+    const newRow = movieTable.insertRow();
+    
+    const titleCell = newRow.insertCell();
     titleCell.textContent = data.title;
-    const genreCell = newRow.insertCell()
-   genreCell.textContent = data.genre;
-    const ratingCell = newRow.insertCell()
+    
+    const genreCell = newRow.insertCell();
+    genreCell.textContent = data.genre;
+    
+    const ratingCell = newRow.insertCell();
     ratingCell.textContent = data.rating;
     
+    const deleteCell = newRow.insertCell();
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+        movieTable.deleteRow(newRow.rowIndex);
+    });
+    deleteCell.appendChild(deleteButton);
 }
 
 //////////////////////////////////////////
@@ -101,6 +123,10 @@ function deleteRow(entityId) {
       });
   }
 
+
+///////////////////////////////////////////////////
+
+//////////////Get all/////////////////////////////
 function fetchData() {
     fetch('https://movies-db-team3.onrender.com/movies_to_watch')
     .then(response => response.json())
@@ -139,3 +165,7 @@ function fetchData() {
 
 }
 fetchData();
+
+///////////////////////////////////////////
+
+///////////////Update one/////////////////
