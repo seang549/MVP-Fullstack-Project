@@ -197,7 +197,192 @@
 //     document.getElementById('editForm').style.display = 'none';
 //   });
   
-const body = document.getElementsByTagName('body')
+// const body = document.getElementsByTagName('body')[0];
+
+// ////////////////////POST REQUEST/////////////////
+// document.getElementById('form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const formData = {
+//         title: document.getElementById('movieTitle').value,
+//         genre: document.getElementById('genre').value,
+//         rating: document.getElementById('rating').value
+//     }
+//     postData(formData)
+// })
+
+// function postData(data) {
+//     fetch('https://movies-db-team3.onrender.com/movies_to_watch', {
+//         method: 'POST',
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         body: JSON.stringify(data)
+//     })
+//     .then(response => response.json())
+//     .then(result => {
+//         console.log('Success:', result);
+
+//         addRowToTable(result)
+//     })
+//     .catch(error => {
+//         console.error('Error:', error)
+//     })
+// }
+
+// function addRowToTable(data) {
+//     const movieTable = document.getElementById('movieTable');
+//     const newRow = movieTable.insertRow();
+    
+//     const titleCell = newRow.insertCell();
+//     titleCell.textContent = data.title;
+    
+//     const genreCell = newRow.insertCell();
+//     genreCell.textContent = data.genre;
+    
+//     const ratingCell = newRow.insertCell();
+//     ratingCell.textContent = data.rating;
+    
+//     const deleteCell = newRow.insertCell();
+//     const deleteButton = document.createElement('button');
+//     deleteButton.textContent = 'Delete';
+//     deleteButton.addEventListener('click', function() {
+//         deleteRow(data.id);
+//     });
+//     deleteCell.appendChild(deleteButton);
+    
+//     const editCell = newRow.insertCell();
+//     const editButton = document.createElement('button');
+//     editButton.textContent = 'Edit';
+//     editButton.addEventListener('click', function() {
+//         getEntity(data.id);
+//     });
+//     editCell.appendChild(editButton);
+// }
+
+// //////////////////////////////////////////
+
+// ////////////////////DELETE ONE////////////
+
+// // deletes table row
+// function deleteRow(entityId) {
+//     // Make a delete request using fetch
+//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
+//         method: "DELETE"
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log("Row deleted successfully");
+//         fetchData();
+//     })
+//     .catch(error => {
+//         console.error("Error:", error);
+//     });
+// }
+
+// ///////////////////////////////////////////////////
+
+// //////////////Get one/////////////////////////////
+
+// // Fetches data of a specific entity
+// function getEntity(entityId) {
+//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`)
+//     .then(response => response.json())
+//     .then(data => {
+//         // Populate the edit form with fetched data
+//         document.getElementById('editMovieTitle').value = data.title;
+//         document.getElementById('editGenre').value = data.genre;
+//         document.getElementById('editRating').value = data.rating;
+//         document.getElementById('editForm').style.display = 'block';
+//     })
+//     .catch(error => {
+//         console.error('Error:', error)
+//     })
+// }
+
+// // Handles the edit form submission
+// document.getElementById('editForm').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const entityId = document.getElementById('entityId').value;
+//     const formData = {
+//         title: document.getElementById('editMovieTitle').value,
+//         genre: document.getElementById('editGenre').value,
+//         rating: document.getElementById('editRating').value
+//     }
+//     updateEntity(entityId, formData);
+//     document.getElementById('editForm').style.display = 'none';
+// });
+
+// // Updates the entity with edited data
+// function updateEntity(entityId, data) {
+//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         body: JSON.stringify(data)
+//     })
+//     .then(response => response.json())
+//     .then(result => {
+//         console.log('Success:', result);
+//         fetchData();
+//     })
+//     .catch(error => {
+//         console.error('Error:', error)
+//     })
+// }
+
+// ///////////////////////////////////////////////////
+
+// //////////////Get all/////////////////////////////
+// function fetchData() {
+//     fetch('https://movies-db-team3.onrender.com/movies_to_watch')
+//     .then(response => response.json())
+//     .then(data => {
+//         const movieTable = document.getElementById('movieTable')
+//         movieTable.innerHTML = '';
+
+//         data.forEach(entity => {
+//             const newRow = document.createElement('tr')
+//             const titleCell = document.createElement('td');
+//             const genreCell = document.createElement('td');
+//             const ratingCell = document.createElement('td');
+//             const actionCell = document.createElement('td')
+//             const deleteBtn = document.createElement('button')
+//             const editBtn = document.createElement('button')
+
+//             titleCell.textContent = entity.title;
+//             genreCell.textContent = entity.genre;
+//             ratingCell.textContent = entity.rating;
+            
+//             deleteBtn.textContent = "Delete";
+//             deleteBtn.addEventListener("click", function() {
+//                 deleteRow(entity.id);
+//             })
+
+//             editBtn.textContent = "Edit";
+//             editBtn.classList.add("edit-btn")
+//             editBtn.addEventListener("click", function() {
+//                 getEntity(entity.id);
+//             })
+
+//             actionCell.appendChild(deleteBtn);
+//             actionCell.appendChild(editBtn);
+//             newRow.appendChild(titleCell);
+//             newRow.appendChild(genreCell)
+//             newRow.appendChild(ratingCell)
+//             newRow.appendChild(actionCell)
+//             movieTable.appendChild(newRow)
+        
+//         });
+//     })
+//     .catch(error => {
+//         console.error('Error:', error)
+//     })
+
+// }
+// fetchData();
+
+const body = document.getElementsByTagName('body')[0];
 
 ////////////////////POST REQUEST/////////////////
 document.getElementById('form').addEventListener('submit', function(event) {
@@ -206,9 +391,9 @@ document.getElementById('form').addEventListener('submit', function(event) {
         title: document.getElementById('movieTitle').value,
         genre: document.getElementById('genre').value,
         rating: document.getElementById('rating').value
-    }
-    postData(formData)
-})
+    };
+    postData(formData);
+});
 
 function postData(data) {
     fetch('https://movies-db-team3.onrender.com/movies_to_watch', {
@@ -221,12 +406,11 @@ function postData(data) {
     .then(response => response.json())
     .then(result => {
         console.log('Success:', result);
-
-        addRowToTable(result)
+        addRowToTable(result);
     })
     .catch(error => {
-        console.error('Error:', error)
-    })
+        console.error('Error:', error);
+    });
 }
 
 function addRowToTable(data) {
@@ -259,29 +443,27 @@ function addRowToTable(data) {
     editCell.appendChild(editButton);
 }
 
-//////////////////////////////////////////
+////////////////////DELETE ONE/////////////////
 
-////////////////////DELETE ONE////////////
-
-// deletes table row
+// Deletes table row
 function deleteRow(entityId) {
     // Make a delete request using fetch
     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
-        method: "DELETE"
+        method: 'DELETE'
     })
     .then(response => response.json())
     .then(data => {
-        console.log("Row deleted successfully");
+        console.log('Row deleted successfully');
         fetchData();
     })
     .catch(error => {
-        console.error("Error:", error);
+        console.error('Error:', error);
     });
 }
 
 ///////////////////////////////////////////////////
 
-//////////////Get one/////////////////////////////
+//////////////////Get one//////////////////////////
 
 // Fetches data of a specific entity
 function getEntity(entityId) {
@@ -295,8 +477,8 @@ function getEntity(entityId) {
         document.getElementById('editForm').style.display = 'block';
     })
     .catch(error => {
-        console.error('Error:', error)
-    })
+        console.error('Error:', error);
+    });
 }
 
 // Handles the edit form submission
@@ -307,7 +489,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         title: document.getElementById('editMovieTitle').value,
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
-    }
+    };
     updateEntity(entityId, formData);
     document.getElementById('editForm').style.display = 'none';
 });
@@ -327,57 +509,57 @@ function updateEntity(entityId, data) {
         fetchData();
     })
     .catch(error => {
-        console.error('Error:', error)
-    })
+        console.error('Error:', error);
+    });
 }
 
 ///////////////////////////////////////////////////
 
-//////////////Get all/////////////////////////////
+//////////////////Get all////////////////////////////
 function fetchData() {
     fetch('https://movies-db-team3.onrender.com/movies_to_watch')
     .then(response => response.json())
     .then(data => {
-        const movieTable = document.getElementById('movieTable')
+        const movieTable = document.getElementById('movieTable');
         movieTable.innerHTML = '';
 
         data.forEach(entity => {
-            const newRow = document.createElement('tr')
+            const newRow = document.createElement('tr');
             const titleCell = document.createElement('td');
             const genreCell = document.createElement('td');
             const ratingCell = document.createElement('td');
-            const actionCell = document.createElement('td')
-            const deleteBtn = document.createElement('button')
-            const editBtn = document.createElement('button')
+            const actionCell = document.createElement('td');
+            const deleteBtn = document.createElement('button');
+            const editBtn = document.createElement('button');
 
             titleCell.textContent = entity.title;
             genreCell.textContent = entity.genre;
             ratingCell.textContent = entity.rating;
             
-            deleteBtn.textContent = "Delete";
-            deleteBtn.addEventListener("click", function() {
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', function() {
                 deleteRow(entity.id);
-            })
+            });
 
-            editBtn.textContent = "Edit";
-            editBtn.classList.add("edit-btn")
-            editBtn.addEventListener("click", function() {
+            editBtn.textContent = 'Edit';
+            editBtn.classList.add('edit-btn');
+            editBtn.addEventListener('click', function() {
                 getEntity(entity.id);
-            })
+            });
 
             actionCell.appendChild(deleteBtn);
             actionCell.appendChild(editBtn);
             newRow.appendChild(titleCell);
-            newRow.appendChild(genreCell)
-            newRow.appendChild(ratingCell)
-            newRow.appendChild(actionCell)
-            movieTable.appendChild(newRow)
-        
+            newRow.appendChild(genreCell);
+            newRow.appendChild(ratingCell);
+            newRow.appendChild(actionCell);
+            movieTable.appendChild(newRow);
         });
     })
     .catch(error => {
-        console.error('Error:', error)
-    })
-
+        console.error('Error:', error);
+    });
 }
+
 fetchData();
+
