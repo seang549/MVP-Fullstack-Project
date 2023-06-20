@@ -173,7 +173,7 @@ function fetchData() {
             const releaseYearCell = document.createElement('td');
             const genreCell = document.createElement('td');
             const ratingCell = document.createElement('td');
-            const actionCell = document.createElement('td');
+            // const actionCell = document.createElement('td');
             const deleteBtn = document.createElement('button');
             const editBtn = document.createElement('button');
 
@@ -194,14 +194,14 @@ function fetchData() {
                 getEntity(entity.id);
             });
 
-            actionCell.appendChild(deleteBtn);
-            actionCell.appendChild(editBtn);
+            newRow.appendChild(deleteBtn);
+            newRow.appendChild(editBtn);
             newRow.appendChild(titleCell);
             newRow.appendChild(directorCell);
             newRow.appendChild(releaseYearCell);
             newRow.appendChild(genreCell);
             newRow.appendChild(ratingCell);
-            newRow.appendChild(actionCell);
+            // newRow.appendChild(actionCell);
             movieTable.appendChild(newRow);
         });
     })
