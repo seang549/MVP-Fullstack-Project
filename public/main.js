@@ -10,7 +10,7 @@ document.getElementById('editForm').style.display = 'none';
 const body = document.getElementsByTagName('body')[0];
 
 ////////////////////POST REQUEST/////////////////
-document.getElementById('form').addEventListener('submit', function(event) {
+document.getElementById('addForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = {
         title: document.getElementById('movieTitle').value,
