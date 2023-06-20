@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 // Example usage: Add event listener to the Cancel button in the edit form
 const cancelEditBtn = document.getElementById('cancelEditBtn');
 cancelEditBtn.addEventListener('click', function(event) {
@@ -88,7 +90,7 @@ function deleteRow(entityId) {
 
 ///////////////////////////////////////////////////
 
-//////////////////Get one//////////////////////////
+//////////////////Get one & Put//////////////////////////
 
 // Fetches data of a specific entity
 function getEntity(entityId) {
@@ -129,6 +131,7 @@ function updateEntity(entityId, data) {
         body: JSON.stringify(data)
     })
     .then(response => response.json())
+    console.log(response)
     .then(result => {
         console.log('Success:', result);
         fetchData();
