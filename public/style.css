@@ -7,11 +7,12 @@
     display: none;
 }
 
-h1 {
-    background-image: "movie_banner.jpeg";
-    background-repeat: no-repeat;
-    background-position: center center;
-} */
+ */
+
+
+ h1 {
+    font-family: 'Playfair Display', serif;
+}
 
 /* Style for the main container */
 body {
