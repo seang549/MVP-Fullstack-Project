@@ -143,7 +143,7 @@ function fetchData() {
             editBtn.textContent = "Edit";
             editBtn.classList.add("edit-btn")
             editBtn.addEventListener("click", function() {
-                updateOne(entity.id);
+                editRow(entity.id);
             })
 
             actionCell.appendChild(deleteBtn);
@@ -256,7 +256,7 @@ function editRow(rowId) {
 }
 
 function updateRow() {
-    const movieTitle = document.getElementById('title').value;
+    const title = document.getElementById('title').value;
     const genre = document.getElementById('genre').value;
     const rating = document.getElementById('rating').value;
 
