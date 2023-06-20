@@ -4,6 +4,11 @@ cancelEditBtn.addEventListener('click', function(event) {
 event.preventDefault();
 document.getElementById('editForm').style.display = 'none';
 });
+const cancelAddBtn = document.getElementById('cancelAddBtn');
+cancelAddBtn.addEventListener('click', function(event) {
+event.preventDefault();
+document.getElementById('formToAdd').style.display = 'none';
+});
 
 
 
@@ -41,6 +46,7 @@ function postData(data) {
 }
 
 function addRowToTable(data) {
+    document.getElementById('formToAdd').style.display = 'block';
     const movieTable = document.getElementById('movieTable');
     const newRow = movieTable.insertRow();
     
@@ -213,4 +219,9 @@ function fetchData() {
 }
 
 fetchData();
+
+let addBtn = document.getElementById('add')
+addBtn.addEventListener('click', () => {
+    postData();
+})
 

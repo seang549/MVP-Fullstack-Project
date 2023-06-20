@@ -12,15 +12,6 @@
     <div id="movies" class="header">
         <h2>Movies I want to see:</h2>
 
-        <form id="addForm" method="post">
-            <input type="text", id="movieTitle" placeholder="Movie title..."/></br>
-            <input type="text", id="director" placeholder="Director..."/></br>
-            <input type="text", id="releaseYear" placeholder="Release year..."/></br>
-            <input type="text", id="genre" placeholder="Genre..."/></br>
-            <input type="number", id="rating" placeholder="Rating..."/></br>
-            <button type="submit">Add</button>
-        </form>
-
     </div>
     <table id='movieTable'>
         <tbody id='data'>
@@ -28,6 +19,21 @@
 
         </tbody>
     </table>
+
+    <button id="add">Add</button>
+
+    <div id="formToAdd" style="display: none">
+        <h2>Add Form</h2>
+        <form id="addForm" method="post">
+            <input type="text", id="movieTitle" placeholder="Movie title..."/></br>
+            <input type="text", id="director" placeholder="Director..."/></br>
+            <input type="text", id="releaseYear" placeholder="Release year..."/></br>
+            <input type="text", id="genre" placeholder="Genre..."/></br>
+            <input type="number", id="rating" placeholder="Rating..."/></br>
+            <button type="submit">Add</button>
+            <button id="cancelAddBtn">Cancel</button>
+        </form>
+    </div>
 
     <div id="editForm" style="display: none">
         <h2>Edit Form</h2>
