@@ -127,7 +127,8 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
     };
-    
+    console.log(entityId);
+    console.log(editFormData);
     updateEntity(entityId, editFormData);
     document.getElementById('editForm').style.display = 'none';
 });
@@ -135,8 +136,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
 // Updates the entity with edited data
 
 function updateEntity(entityId, data) {
-    console.log(entityId);
-    console.log(data)
+
     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
         method: 'PUT',
         headers: {
