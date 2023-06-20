@@ -14,6 +14,8 @@ document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = {
         title: document.getElementById('movieTitle').value,
+        director: document.getElementById('director').value,
+        release_year: document.getElementById('releaseYear').value,
         genre: document.getElementById('genre').value,
         rating: document.getElementById('rating').value
     };
@@ -44,6 +46,12 @@ function addRowToTable(data) {
     
     const titleCell = newRow.insertCell();
     titleCell.textContent = data.title;
+
+    const directorCell = newRow.insertCell();
+    directorCell.textContent = data.director;
+
+    const releaseYearCell = newRow.insertCell();
+    releaseYearCell.textContent = data.release_year;
     
     const genreCell = newRow.insertCell();
     genreCell.textContent = data.genre;
@@ -97,6 +105,8 @@ function getEntity(entityId) {
     .then(data => {
         // Populate the edit form with fetched data
         document.getElementById('editMovieTitle').value = data.title;
+        document.getElementById('editDirector').value = data.director;
+        document.getElementById('editReleaseYear').value = data.release_year;
         document.getElementById('editGenre').value = data.genre;
         document.getElementById('editRating').value = data.rating;
         document.getElementById('editForm').style.display = 'block';
@@ -112,6 +122,8 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
     const entityId = document.getElementById('entityId').value;
     const editFormData = {
         title: document.getElementById('editMovieTitle').value,
+        director: document.getElementById('editDirector').value,
+        release_year: document.getElementById('editReleaseYear').value,
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
     };
@@ -137,7 +149,6 @@ function updateEntity(entityId, data) {
     .catch(error => {
         console.error('Error:', error);
     });
-    console.log(result)
 }
 
 ///////////////////////////////////////////////////
@@ -153,6 +164,8 @@ function fetchData() {
         data.forEach(entity => {
             const newRow = document.createElement('tr');
             const titleCell = document.createElement('td');
+            const directorCell = document.createElement('td');
+            const releaseYearCell = document.createElement('td');
             const genreCell = document.createElement('td');
             const ratingCell = document.createElement('td');
             const actionCell = document.createElement('td');
@@ -160,6 +173,8 @@ function fetchData() {
             const editBtn = document.createElement('button');
 
             titleCell.textContent = entity.title;
+            directorCell.textContent = entity.director;
+            releaseYearCell.textContent = entity.release_year;
             genreCell.textContent = entity.genre;
             ratingCell.textContent = entity.rating;
             
@@ -177,6 +192,8 @@ function fetchData() {
             actionCell.appendChild(deleteBtn);
             actionCell.appendChild(editBtn);
             newRow.appendChild(titleCell);
+            newRow.appendChild(directorCell);
+            newRow.appendChild(releaseYearCell);
             newRow.appendChild(genreCell);
             newRow.appendChild(ratingCell);
             newRow.appendChild(actionCell);
