@@ -174,7 +174,7 @@ function fetchData() {
             const genreCell = document.createElement('td');
             const ratingCell = document.createElement('td');
             const deleteCell = document.createElement('td');
-            const editCell = documnet.createElement('td')
+            const editCell = document.createElement('td')
             const deleteBtn = document.createElement('button');
             const editBtn = document.createElement('button');
 
