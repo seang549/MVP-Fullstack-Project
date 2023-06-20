@@ -14,7 +14,7 @@ dotenv.config()
 
 
 
-const getAll = app.get('/movies_to_watch', async(req, res) => {
+app.get('/movies_to_watch', async(req, res) => {
         try {
             const result = await pool.query('SELECT * FROM movies_to_watch')
             res.status(200).json(result.rows)
@@ -24,7 +24,7 @@ const getAll = app.get('/movies_to_watch', async(req, res) => {
         }
     })
 
-const getOne = app.get('/movies_to_watch/:id', async(req, res) => {
+app.get('/movies_to_watch/:id', async(req, res) => {
         try {
             let {id} = req.params;
             let result = await pool.query('SELECT * FROM movies_to_watch WHERE id = $1', [id])
@@ -38,7 +38,7 @@ const getOne = app.get('/movies_to_watch/:id', async(req, res) => {
         }
     })
 
-const createOne = app.post('/movies_to_watch', async(req,res) =>{
+app.post('/movies_to_watch', async(req,res) =>{
         try {
             let {title, director, release_year, genre, rating} = req.body;
             let result = await pool.query('INSERT INTO movies_to_watch (title, director, release_year, genre, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *', [title, director, release_year, genre, rating]);
@@ -49,7 +49,7 @@ const createOne = app.post('/movies_to_watch', async(req,res) =>{
         }
     })
 
-const updateOne = app.put('/movies_to_watch/:id', async (req, res) => {
+app.put('/movies_to_watch/:id', async (req, res) => {
         try {
             let {title, director, release_year, genre, rating} = req.body;
             let {id} = req.params;
@@ -74,7 +74,7 @@ const updateOne = app.put('/movies_to_watch/:id', async (req, res) => {
         }
     })
 
-const deleteOne = app.delete('/movies_to_watch/:id', async (req,res) => {
+app.delete('/movies_to_watch/:id', async (req,res) => {
         try {
             let {id} = req.params
             let result = await pool.query('DELETE FROM movies_to_watch WHERE id = $1 RETURNING *', [id])

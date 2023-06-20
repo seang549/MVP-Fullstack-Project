@@ -254,7 +254,7 @@ function addRowToTable(data) {
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
     editButton.addEventListener('click', function() {
-        showEditForm(data.id);
+        getEntity(data.id);
     });
     editCell.appendChild(editButton);
 }
