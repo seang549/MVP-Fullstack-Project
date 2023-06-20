@@ -115,7 +115,8 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
     };
-    updateEntity(entityId, editFormData);
+    let editedFormData = JSON.parse(editFormData)
+    updateEntity(entityId, editedFormData);
     document.getElementById('editForm').style.display = 'none';
 });
 
