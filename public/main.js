@@ -485,12 +485,12 @@ function getEntity(entityId) {
 document.getElementById('editForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const entityId = document.getElementById('entityId').value;
-    const formData = {
+    const editFormData = {
         title: document.getElementById('editMovieTitle').value,
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
     };
-    updateEntity(entityId, formData);
+    updateEntity(entityId, editFormData);
     document.getElementById('editForm').style.display = 'none';
 });
 
