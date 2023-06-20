@@ -138,3 +138,52 @@ body {
     background-color: #45a049;
   }
   
+  th {
+    font-weight: bold;
+  }
+  
+  /* Style for table cell borders */
+  td {
+    border: 1px solid #ccc;
+  }
+  
+  /* Style for the Cancel button */
+  #cancelAddBtn,
+  #cancelEditBtn {
+    background-color: #ff4d4d;
+  }
+  
+  /* Style for the Cancel button on hover */
+  #cancelAddBtn:hover,
+  #cancelEditBtn:hover {
+    background-color: #ff3333;
+  }
+  
+  /* Style for the Save button */
+  button[type="submit"] {
+    background-color: #007bff;
+  }
+  
+  /* Style for the Save button on hover */
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the table when there are no movies */
+  #data:empty::before {
+    content: "No movies found.";
+    display: block;
+    padding: 10px;
+    font-style: italic;
+    color: #888;
+  }
+  
+  /* Style for the form input fields with invalid values */
+  input:invalid {
+    border-color: #ff4d4d;
+  }
+  
+  /* Style for the form input fields with valid values */
+  input:valid {
+    border-color: #ccc;
+  }
