@@ -129,14 +129,14 @@ function updateEntity(entityId, data) {
         body: JSON.stringify(data)
     })
     .then(response => response.json())
-    console.log(data)
     .then(result => {
         console.log('Success:', result);
-        fetchData(data);
+        fetchData();
     })
     .catch(error => {
         console.error('Error:', error);
     });
+    console.log(data)
 }
 
 ///////////////////////////////////////////////////
