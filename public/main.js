@@ -166,6 +166,7 @@ fetchData();
 ///////////////////////////////////////////
 
 ///////////////Update one/////////////////
+let editingRowId = null;
 function updateOne() {
     const movieTable = document.getElementById("movieTable")
     movieTable.addEventListener("click", function(event) {
@@ -195,8 +196,8 @@ function updateOne() {
         event.preventDefault()
 
         const editedMovieTitle = document.getElementById("editMovieTitle").value
-        const editedGenre = document.getElementById("editedGenre").value
-        const editedRating = document.getElementById("editedRating").value
+        const editedGenre = document.getElementById("editGenre").value
+        const editedRating = document.getElementById("editRating").value
 
         const updatedRow = {
             title: editedMovieTitle,
@@ -210,7 +211,7 @@ function updateOne() {
             },
             body: JSON.stringify(updatedRow)
         })
-        .then((respose) => respose.json())
+        .then((response) => response.json())
         .then((data) => {
             console.log("Row updated successfully")
             hideEditForm();
