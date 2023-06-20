@@ -222,6 +222,6 @@ fetchData();
 
 let addBtn = document.getElementById('add')
 addBtn.addEventListener('click', () => {
-    postData();
+    document.getElementById('formToAdd').style.display = "block";
 })
 
