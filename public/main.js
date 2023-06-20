@@ -143,9 +143,9 @@ function getEntity(entityId) {
       .then(response => response.json())
       .then(data => {
         // Populate the edit form with the retrieved data
-        document.getElementById('title').value = data.title;
-        document.getElementById('genre').value = data.genre;
-        document.getElementById('rating').value = data.rating;
+        document.getElementById('editMovieTitle').value = data.title;
+        document.getElementById('editGenre').value = data.genre;
+        document.getElementById('editRating').value = data.rating;
         
   
         // Show the edit form
