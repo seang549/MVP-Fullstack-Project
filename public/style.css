@@ -6,3 +6,9 @@ table, td {
 #entityId {
     display: none;
 }
+
+h1 {
+    background-image: "movie_banner.jpeg";
+    background-repeat: no-repeat;
+    background-position: center center;
+}
