@@ -143,7 +143,7 @@ function fetchData() {
             editBtn.textContent = "Edit";
             editBtn.classList.add("edit-btn")
             editBtn.addEventListener("click", function() {
-                editRow(entity.id);
+                getEntity(entity.id);
             })
 
             actionCell.appendChild(deleteBtn);
@@ -279,131 +279,76 @@ fetchData();
 // }
 
 
-// Global variable to store the current editing row index
-let editingRowIndex = -1;
-
-// Function to fetch the entity data
-async function getEntity() {
-  try {
-    const response = await fetch('/api/entity'); // Replace '/api/entity' with your actual API endpoint
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      throw new Error('Failed to fetch entity');
-    }
-  } catch (error) {
-    console.error(error);
+// Function to retrieve an entity by ID
+function getEntity(id) {
+    fetch(`/api/entity/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        // Populate the edit form with the retrieved data
+        document.getElementById('title').value = data.title;
+        document.getElementById('genre').value = data.genre;
+        document.getElementById('rating').value = data.rating;
+  
+        // Show the edit form
+        document.getElementById('editForm').style.display = 'block';
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
   }
-}
-
-// Function to update the entity data
-async function updateEntity(updatedData) {
-  try {
-    const response = await fetch('/api/entity', {
+  
+  // Function to update an entity
+  function updateEntity(id) {
+    // Get the values from the edit form
+    const title = document.getElementById('title').value;
+    const genre = document.getElementById('genre').value;
+    const rating = document.getElementById('rating').value;
+  
+    // Create the updated entity object
+    const updatedEntity = {
+      title: title,
+      genre: genre,
+      rating: rating
+    };
+  
+    fetch(`/api/entity/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(updatedData)
-    });
-    if (response.ok) {
-      console.log('Entity updated successfully');
-    } else {
-      throw new Error('Failed to update entity');
-    }
-  } catch (error) {
-    console.error(error);
+      body: JSON.stringify(updatedEntity)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Hide the edit form
+        document.getElementById('editForm').style.display = 'none';
+  
+        // Update the corresponding row in the table with the updated data
+        const row = document.getElementById(`row-${id}`);
+        row.cells[0].textContent = data.title;
+        row.cells[1].textContent = data.genre;
+        row.cells[2].textContent = data.rating;
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
   }
-}
-
-// Function to populate the table with data
-async function populateTable() {
-  const data = await getEntity();
-  const tableBody = document.getElementById('data');
-  tableBody.innerHTML = '';
-
-  data.forEach((entity, index) => {
-    const row = tableBody.insertRow();
-
-    // Create and populate the cells
-    const titleCell = row.insertCell();
-    titleCell.textContent = entity.title;
-
-    const genreCell = row.insertCell();
-    genreCell.textContent = entity.genre;
-
-    const ratingCell = row.insertCell();
-    ratingCell.textContent = entity.rating;
-
-    const actionsCell = row.insertCell();
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
-    editButton.addEventListener('click', () => {
-      openEditForm(index, entity);
+  
+  // Example usage: Add event listeners to the table rows
+  const table = document.getElementById('movieTable');
+  const rows = table.getElementsByTagName('tr');
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    const id = row.getAttribute('data-id');
+    row.addEventListener('click', function() {
+      getEntity(id);
     });
-    actionsCell.appendChild(editButton);
+  }
+  
+  // Example usage: Add event listener to the Cancel button in the edit form
+  const cancelEditBtn = document.getElementById('cancelEditBtn');
+  cancelEditBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('editForm').style.display = 'none';
   });
-}
-
-// Function to open the edit form and populate it with data
-function openEditForm(rowIndex, entity) {
-  const editForm = document.getElementById('editForm');
-  const titleInput = document.getElementById('title');
-  const genreInput = document.getElementById('genre');
-  const ratingInput = document.getElementById('rating');
-
-  // Set the values of the inputs to the entity data
-  titleInput.value = entity.title;
-  genreInput.value = entity.genre;
-  ratingInput.value = entity.rating;
-
-  // Set the editingRowIndex to the current row index
-  editingRowIndex = rowIndex;
-
-  // Show the edit form
-  editForm.style.display = 'block';
-}
-
-// Function to handle the form submission and update the row
-function updateRow() {
-  const titleInput = document.getElementById('title');
-  const genreInput = document.getElementById('genre');
-  const ratingInput = document.getElementById('rating');
-
-  // Get the updated values from the inputs
-  const updatedEntity = {
-    title: titleInput.value,
-    genre: genreInput.value,
-    rating: ratingInput.value
-  };
-
-  // Update the entity in the table
-  const tableBody = document.getElementById('data');
-  const row = tableBody.rows[editingRowIndex];
-  const cells = row.cells;
-
-  cells[0].textContent = updatedEntity.title;
-  cells[1].textContent = updatedEntity.genre;
-  cells[2].textContent = updatedEntity.rating;
-
-  // Hide the edit form
-  const editForm = document.getElementById('editForm');
-  editForm.style.display = 'none';
-
-  // Send the updated entity to the server
-  updateEntity(updatedEntity);
-}
-
-// Function to cancel the editing and hide the edit form
-function cancelEdit() {
-  const editForm = document.getElementById('editForm');
-  editForm.style.display = 'none';
-}
-
-// Event listener for the cancel button in the edit form
-const cancelEditBtn = document.getElementById('cancelEditBtn');
-cancelEditBtn.addEventListener('click', cancelEdit);
-
-// Populate the table on page load
-populateTable();
+  
