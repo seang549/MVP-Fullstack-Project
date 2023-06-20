@@ -133,7 +133,10 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
 });
 
 // Updates the entity with edited data
+
 function updateEntity(entityId, data) {
+    console.log(entityId);
+    console.log(data)
     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
         method: 'PUT',
         headers: {

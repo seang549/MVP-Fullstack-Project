@@ -53,6 +53,8 @@ app.put('/movies_to_watch/:id', async (req, res) => {
         try {
             let {title, director, release_year, genre, rating} = req.body;
             let {id} = req.params;
+            console.log(req.body);
+            console.log(req.params);
             let currentMovie = await pool.query('SELECT * FROM movies_to_watch WHERE id = $1', [id]);
             if (currentMovie.rowCount === 0) {
                 res.type('text/plain').send('Movie not found')
