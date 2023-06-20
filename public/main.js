@@ -281,7 +281,7 @@ fetchData();
 
 // Function to retrieve an entity by ID
 function getEntity(id) {
-    fetch(`/api/entity/${id}`)
+    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${id}`)
       .then(response => response.json())
       .then(data => {
         // Populate the edit form with the retrieved data
@@ -311,7 +311,7 @@ function getEntity(id) {
       rating: rating
     };
   
-    fetch(`/api/entity/${id}`, {
+    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
