@@ -109,6 +109,7 @@ function getEntity(entityId) {
         document.getElementById('editReleaseYear').value = data.release_year;
         document.getElementById('editGenre').value = data.genre;
         document.getElementById('editRating').value = data.rating;
+        document.getElementById('entityId').value = data.id
         document.getElementById('editForm').style.display = 'block';
     })
     .catch(error => {
