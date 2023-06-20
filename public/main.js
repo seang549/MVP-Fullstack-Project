@@ -115,13 +115,13 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
     };
-    updateEntity(entityId, editFormData);
+    updateEntity(entityId, JSON.parse(editFormData));
     document.getElementById('editForm').style.display = 'none';
 });
 
 // Updates the entity with edited data
 function updateEntity(entityId, data) {
-    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/`, {
+    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
         method: 'PUT',
         headers: {
             'Content-type': 'application/json'
