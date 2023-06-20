@@ -242,38 +242,168 @@ fetchData();
 
 
 
-function editRow(rowId) {
-    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${rowId}`)
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('title').value = data.title;
-        document.getElementById('genre').value = data.genre;
-        document.getElementById('rating').value = data.rating;
-    })
-    .catch(error => console.error('Error:', error))
+// function editRow(rowId) {
+//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${rowId}`)
+//     .then(response => response.json())
+//     .then(data => {
+//         document.getElementById('title').value = data.title;
+//         document.getElementById('genre').value = data.genre;
+//         document.getElementById('rating').value = data.rating;
+//     })
+//     .catch(error => console.error('Error:', error))
 
-    document.getElementById('editForm').style.display = 'block';
+//     document.getElementById('editForm').style.display = 'block';
+// }
+
+// function updateRow() {
+//     const title = document.getElementById('title').value;
+//     const genre = document.getElementById('genre').value;
+//     const rating = document.getElementById('rating').value;
+
+//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${rowId}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         body: JSON.stringify({title, genre, rating})
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         const updatedRow = document.getElementById(`row${rowId}`);
+//         updatedRow.cells[0].textContent = data.title;
+//         updatedRow.cells[1].textContent = data.genre;
+//         updatedRow.cells[2].textContent = data.rating;
+//     })
+//     .catch(error => console.error('Error:', error))
+//     document.getElementById('editForm').style.display = 'none'
+// }
+
+
+// Global variable to store the current editing row index
+let editingRowIndex = -1;
+
+// Function to fetch the entity data
+async function getEntity() {
+  try {
+    const response = await fetch('/api/entity'); // Replace '/api/entity' with your actual API endpoint
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error('Failed to fetch entity');
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
+// Function to update the entity data
+async function updateEntity(updatedData) {
+  try {
+    const response = await fetch('/api/entity', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedData)
+    });
+    if (response.ok) {
+      console.log('Entity updated successfully');
+    } else {
+      throw new Error('Failed to update entity');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Function to populate the table with data
+async function populateTable() {
+  const data = await getEntity();
+  const tableBody = document.getElementById('data');
+  tableBody.innerHTML = '';
+
+  data.forEach((entity, index) => {
+    const row = tableBody.insertRow();
+
+    // Create and populate the cells
+    const titleCell = row.insertCell();
+    titleCell.textContent = entity.title;
+
+    const genreCell = row.insertCell();
+    genreCell.textContent = entity.genre;
+
+    const ratingCell = row.insertCell();
+    ratingCell.textContent = entity.rating;
+
+    const actionsCell = row.insertCell();
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.addEventListener('click', () => {
+      openEditForm(index, entity);
+    });
+    actionsCell.appendChild(editButton);
+  });
+}
+
+// Function to open the edit form and populate it with data
+function openEditForm(rowIndex, entity) {
+  const editForm = document.getElementById('editForm');
+  const titleInput = document.getElementById('title');
+  const genreInput = document.getElementById('genre');
+  const ratingInput = document.getElementById('rating');
+
+  // Set the values of the inputs to the entity data
+  titleInput.value = entity.title;
+  genreInput.value = entity.genre;
+  ratingInput.value = entity.rating;
+
+  // Set the editingRowIndex to the current row index
+  editingRowIndex = rowIndex;
+
+  // Show the edit form
+  editForm.style.display = 'block';
+}
+
+// Function to handle the form submission and update the row
 function updateRow() {
-    const title = document.getElementById('title').value;
-    const genre = document.getElementById('genre').value;
-    const rating = document.getElementById('rating').value;
+  const titleInput = document.getElementById('title');
+  const genreInput = document.getElementById('genre');
+  const ratingInput = document.getElementById('rating');
 
-    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${rowId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({title, genre, rating})
-    })
-    .then(response => response.json())
-    .then(data => {
-        const updatedRow = document.getElementById(`row${rowId}`);
-        updatedRow.cells[0].textContent = data.title;
-        updatedRow.cells[1].textContent = data.genre;
-        updatedRow.cells[2].textContent = data.rating;
-    })
-    .catch(error => console.error('Error:', error))
-    document.getElementById('editForm').style.display = 'none'
+  // Get the updated values from the inputs
+  const updatedEntity = {
+    title: titleInput.value,
+    genre: genreInput.value,
+    rating: ratingInput.value
+  };
+
+  // Update the entity in the table
+  const tableBody = document.getElementById('data');
+  const row = tableBody.rows[editingRowIndex];
+  const cells = row.cells;
+
+  cells[0].textContent = updatedEntity.title;
+  cells[1].textContent = updatedEntity.genre;
+  cells[2].textContent = updatedEntity.rating;
+
+  // Hide the edit form
+  const editForm = document.getElementById('editForm');
+  editForm.style.display = 'none';
+
+  // Send the updated entity to the server
+  updateEntity(updatedEntity);
 }
+
+// Function to cancel the editing and hide the edit form
+function cancelEdit() {
+  const editForm = document.getElementById('editForm');
+  editForm.style.display = 'none';
+}
+
+// Event listener for the cancel button in the edit form
+const cancelEditBtn = document.getElementById('cancelEditBtn');
+cancelEditBtn.addEventListener('click', cancelEdit);
+
+// Populate the table on page load
+populateTable();
