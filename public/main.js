@@ -132,7 +132,7 @@ function updateEntity(entityId, data) {
     console.log(data)
     .then(result => {
         console.log('Success:', result);
-        fetchData();
+        fetchData(data);
     })
     .catch(error => {
         console.error('Error:', error);
