@@ -127,7 +127,7 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         genre: document.getElementById('editGenre').value,
         rating: document.getElementById('editRating').value
     };
-    console.log(entityId);
+    console.log(document.getElementById('entityId'));
     console.log(editFormData);
     updateEntity(entityId, editFormData);
     document.getElementById('editForm').style.display = 'none';
