@@ -226,4 +226,7 @@ addBtn.addEventListener('click', () => {
 })
 
 
-// async function
+setInterval(async() => {
+    console.log('start');
+    const res = await fetch("https://www.cinematerial.com/posters/random");
+}, 5000)

@@ -39,6 +39,7 @@ body {
   /* Style for the movies header */
   #movies h2 {
     margin-top: 0;
+    margin-bottom: 0;
   }
   
   /* Style for the table */
