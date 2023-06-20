@@ -1,42 +1,5 @@
-// const myNodeList = document.getElementsByTagName('tr')
-// for (let i = 0; i < myNodeList.length; i++) {
-//     let span = document.createElement('span');
-//     let txt = document.createTextNode('\u00D7')
-//     span.className = "close";
-//     span.appendChild(txt);
-//     myNodeList[i].appendChild(span);
-// }
 
-// const close = document.getElementsByClassName('close');
-// for(let i = 0; i < close.length; i++) {
-//     close[i].onclick = () => {
-//         let div = this.parentElement;
-//         div.style.display = "none";
-//     }
-// }
 const body = document.getElementsByTagName('body')
-
-// async function getAll () {
-//     try {
-//         const response = await fetch("https://movies-db-team3.onrender.com/movies_to_watch");
-//         console.log(response)
-//         const data = await response.json();
-//         console.log(data);
-//         let temp = "";
-//         for (i = 0; i < data.length; i++) {
-//             temp+="<tr>";
-//             temp+=`<td>${data[i].title}</td>`
-//             temp+=`<td>${data[i].genre}</td>`
-//             temp+=`<td>${data[i].rating}</td>`
-//         }
-//         document.getElementById('data').innerHTML=temp;
-//     }
-//     catch(err) {
-//         console.error(err.message)
-//     }
-
-// }
-// getAll();
 
 ////////////////////POST REQUEST/////////////////
 document.getElementById('form').addEventListener('submit', function(event) {
@@ -85,9 +48,17 @@ function addRowToTable(data) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', function() {
-        movieTable.deleteRow(newRow.rowIndex);
+        deleteRow(data.id);
     });
     deleteCell.appendChild(deleteButton);
+
+    const editCell = newRow.insertCell();
+    const editBtn = document.createElement('button');
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener('click', () => {
+        showEditForm(data.id)
+    })
+    editCell.appendChild(editBtn)
 }
 
 //////////////////////////////////////////
@@ -165,129 +136,17 @@ fetchData();
 
 ///////////////////////////////////////////
 
-///////////////Update one/////////////////
-// let editingRowId = null;
-// function updateOne() {
-//     const movieTable = document.getElementById("movieTable")
-//     movieTable.addEventListener("click", function(event) {
-//         if(event.target.classList.contains('edit-btn')) {
-//             const row = event.target.closest('tr')
-//             const id = row.dataset.id
-
-//             fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${id}`)
-//             .then(response => response.json())
-//             .then(data => {
-//                 document.getElementById('editMovieTitle').value = data.title
-//                 document.getElementById('editGenre').value = data.genre
-//                 document.getElementById('editRating').value = data.rating
-
-//                 document.getElementById('editForm').style.display = "block";
-
-//                 editingRowId = id;
-//             })
-//             .catch(error => {
-//                 console.error("Error:", error)
-//             })
-//         }
-//     })
-
-//     let editFormInputs = document.getElementById('editFormInputs')
-//     editFormInputs.addEventListener("submit", function(event) {
-//         event.preventDefault()
-
-//         const editedMovieTitle = document.getElementById("editMovieTitle").value
-//         const editedGenre = document.getElementById("editGenre").value
-//         const editedRating = document.getElementById("editRating").value
-
-//         const updatedRow = {
-//             title: editedMovieTitle,
-//             genre: editedGenre,
-//             rating: editedRating
-//         }
-//         fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${editingRowId}`, {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(updatedRow)
-//         })
-//         .then((response) => response.json())
-//         .then((data) => {
-//             console.log("Row updated successfully")
-//             hideEditForm();
-//             fetchData()
-//         })
-//         .catch(error => {
-//             console.error("Error:", error)
-//         })
-//     })
-// }
-
-// updateOne()
-
-// let cancelEditBtn = document.getElementById("cancelEditBtn")
-// cancelEditBtn.addEventListener("click", () => {
-//     hideEditForm()
-// })
-
-// function hideEditForm() {
-//     document.getElementById("editMovieTitle").value = ""
-//     document.getElementById("editGenre").value = ""
-//     document.getElementById("editRating").value = ""
-
-//     document.getElementById("editForm").style.display = "none"
-
-//     editingRowId = null;
-// }
-
-
-
-// function editRow(rowId) {
-//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${rowId}`)
-//     .then(response => response.json())
-//     .then(data => {
-//         document.getElementById('title').value = data.title;
-//         document.getElementById('genre').value = data.genre;
-//         document.getElementById('rating').value = data.rating;
-//     })
-//     .catch(error => console.error('Error:', error))
-
-//     document.getElementById('editForm').style.display = 'block';
-// }
-
-// function updateRow() {
-//     const title = document.getElementById('title').value;
-//     const genre = document.getElementById('genre').value;
-//     const rating = document.getElementById('rating').value;
-
-//     fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${rowId}`, {
-//         method: 'PUT',
-//         headers: {
-//             'Content-type': 'application/json'
-//         },
-//         body: JSON.stringify({title, genre, rating})
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         const updatedRow = document.getElementById(`row${rowId}`);
-//         updatedRow.cells[0].textContent = data.title;
-//         updatedRow.cells[1].textContent = data.genre;
-//         updatedRow.cells[2].textContent = data.rating;
-//     })
-//     .catch(error => console.error('Error:', error))
-//     document.getElementById('editForm').style.display = 'none'
-// }
-
-
+///////////////Get one/////////////////
 // Function to retrieve an entity by ID
-function getEntity(id) {
-    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${id}`)
+function getEntity(entityId) {
+    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`)
       .then(response => response.json())
       .then(data => {
         // Populate the edit form with the retrieved data
         document.getElementById('title').value = data.title;
         document.getElementById('genre').value = data.genre;
         document.getElementById('rating').value = data.rating;
+        
   
         // Show the edit form
         document.getElementById('editForm').style.display = 'block';
@@ -295,55 +154,41 @@ function getEntity(id) {
       .catch(error => {
         console.log('Error:', error);
       });
-  }
+}
   
+document.getElementById('editForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const entityId = document.getElementById('entityId').value;
+    const formData = {
+        title: document.getElementById('editMovieTitle').value,
+        genre: document.getElementById('editGenre').value,
+        rating: document.getElementById('editRating').value
+    }
+    updateEntity(entityId, formData);
+    document.getElementById('editForm').style.display = 'none'
+})
   // Function to update an entity
-  function updateEntity(id) {
-    // Get the values from the edit form
-    const title = document.getElementById('title').value;
-    const genre = document.getElementById('genre').value;
-    const rating = document.getElementById('rating').value;
-  
-    // Create the updated entity object
-    const updatedEntity = {
-      title: title,
-      genre: genre,
-      rating: rating
-    };
-  
-    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${id}`, {
+function updateEntity(entityId, data) {
+    fetch(`https://movies-db-team3.onrender.com/movies_to_watch/${entityId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(updatedEntity)
+      body: JSON.stringify(data)
     })
-      .then(response => response.json())
-      .then(data => {
+    .then(response => response.json())
+    .then(result => {
         // Hide the edit form
         document.getElementById('editForm').style.display = 'none';
   
         // Update the corresponding row in the table with the updated data
-        const row = document.getElementById(`row-${id}`);
-        row.cells[0].textContent = data.title;
-        row.cells[1].textContent = data.genre;
-        row.cells[2].textContent = data.rating;
-      })
-      .catch(error => {
-        console.log('Error:', error);
-      });
-  }
-  
-  // Example usage: Add event listeners to the table rows
-  const table = document.getElementById('movieTable');
-  const rows = table.getElementsByTagName('tr');
-  for (let i = 0; i < rows.length; i++) {
-    const row = rows[i];
-    const id = row.getAttribute('data-id');
-    row.addEventListener('click', function() {
-      getEntity(id);
-    });
-  }
+        console.log('Succes:', result)
+        fetchData();
+    })
+    .catch(error => {
+        console.error('Error:', error)
+    })
+}
   
   // Example usage: Add event listener to the Cancel button in the edit form
   const cancelEditBtn = document.getElementById('cancelEditBtn');
