@@ -137,7 +137,7 @@ function updateEntity(entityId, data) {
     .catch(error => {
         console.error('Error:', error);
     });
-    console.log(data)
+    console.log(result)
 }
 
 ///////////////////////////////////////////////////
