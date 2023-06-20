@@ -120,6 +120,7 @@ function getEntity(entityId) {
 document.getElementById('editForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const entityId = document.getElementById('entityId').value;
+    console.log(entityId.value)
     const editFormData = {
         title: document.getElementById('editMovieTitle').value,
         director: document.getElementById('editDirector').value,
