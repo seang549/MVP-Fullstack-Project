@@ -1,4 +1,4 @@
-table, td {
+/* table, td {
     border: 1px solid black;
     border-radius: 10px;
 }
@@ -11,4 +11,130 @@ h1 {
     background-image: "movie_banner.jpeg";
     background-repeat: no-repeat;
     background-position: center center;
-}
+} */
+
+/* Style for the main container */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* Style for the page title */
+  h1 {
+    text-align: center;
+  }
+  
+  /* Style for the movies container */
+  #movies {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the movies header */
+  #movies h2 {
+    margin-top: 0;
+  }
+  
+  /* Style for the table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Style for the table header */
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  /* Style for the table rows */
+  tr {
+    background-color: #fff;
+  }
+  
+  /* Style for alternating table rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style for the table cells */
+  td {
+    padding: 10px;
+  }
+  
+  /* Style for the Add button */
+  #add {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  /* Style for the add form */
+  #formToAdd {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the edit form */
+  #editForm {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for form labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for form inputs */
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for form buttons */
+  button[type="submit"],
+  button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover,
+  button:hover {
+    background-color: #45a049;
+  }
+  
