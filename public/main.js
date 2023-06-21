@@ -226,9 +226,12 @@ addBtn.addEventListener('click', () => {
 })
 
 
-// let movieCard = document.getElementById('movieCard')
-// setInterval(async() => {
-//     console.log('start');
-//     const res = await fetch('https://api.lorem.space/image/movie?w=200&h=200&hash=vi7nxo5g');
-//     res.appendChild(movieCard)
-// }, 5000)
+let movieCard = document.getElementById('movieCard')
+setInterval(async() => {
+    let min = 3896198;
+    let max = 7980933;
+    let random = Math.random() * (max - min) + min;
+    console.log('start');
+    const res = await fetch(`http://www.omdbapi.com/?i=tt${random}&apikey=f5117136`);
+    res.appendChild(movieCard)
+}, 5000)
