@@ -226,9 +226,9 @@ addBtn.addEventListener('click', () => {
 })
 
 
-let movieCard = document.getElementById('movieCard')
-setInterval(async() => {
-    console.log('start');
-    const res = await fetch('https://api.lorem.space/image/movie?w=200&h=200&hash=vi7nxo5g');
-    res.appendChild(movieCard)
-}, 5000)
+// let movieCard = document.getElementById('movieCard')
+// setInterval(async() => {
+//     console.log('start');
+//     const res = await fetch('https://api.lorem.space/image/movie?w=200&h=200&hash=vi7nxo5g');
+//     res.appendChild(movieCard)
+// }, 5000)
