@@ -226,7 +226,9 @@ addBtn.addEventListener('click', () => {
 })
 
 
-// setInterval(async() => {
-//     console.log('start');
-//     const res = await fetch("https://www.cinematerial.com/posters/random");
-// }, 5000)
+let movieCard = document.getElementById('movieCard')
+setInterval(async() => {
+    console.log('start');
+    const res = await fetch('https://api.lorem.space/image/movie?w=200&h=200&hash=vi7nxo5g');
+    res.appendChild(movieCard)
+}, 5000)
