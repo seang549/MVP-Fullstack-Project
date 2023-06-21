@@ -196,7 +196,7 @@ body {
     text-align: center;
   }
   
-  .fa-brands {
+  .fab fa-github, .fab fa-linkedin {
     width: 30px;
     height: 30px;
     margin: 0 10px;
